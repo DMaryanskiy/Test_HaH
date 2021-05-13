@@ -1,0 +1,22 @@
+html {
+    width: 100vw;
+    min-height: 100vh;
+    max-width: 2560px;
+    margin: 0 auto;
+}
+
+.page {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    min-width: 320px;
+    max-width: 2560px;
+    position: relative;
+    background-color: #fafaf9;
+}
+
+* {
+    outline: none !important;
+}

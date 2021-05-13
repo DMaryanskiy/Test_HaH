@@ -1,0 +1,19 @@
+.footer__links {
+    list-style-type: none;
+    margin: 0;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 160%;
+    margin-right: 50px;
+}
+
+@media screen and (min-width: 1440px) {
+    .footer__links {
+        list-style-type: none;
+        margin: 0;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 160%;
+        margin-right: 120px;
+    }
+}

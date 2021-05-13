@@ -1,0 +1,20 @@
+.element__button {
+    background: #f2b236;
+    border: none;
+    width: 223px;
+    height: 42px;
+    box-shadow: 0px 3px 7px #ffe9bf;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: color ease 0.2s;
+    cursor: pointer;
+}
+
+.element__button:hover {
+    color: black;
+}

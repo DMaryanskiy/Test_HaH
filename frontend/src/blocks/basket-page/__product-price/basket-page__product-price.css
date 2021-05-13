@@ -1,0 +1,9 @@
+.basket-page__product-price {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+
+    color: #db4e66;
+
+    margin: -4px 0 0 40px;
+}

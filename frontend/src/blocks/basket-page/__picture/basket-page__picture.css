@@ -1,0 +1,13 @@
+.basket-page__picture {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+@media screen and (min-width: 1440px) {
+    .basket-page__picture {
+        width: 122px;
+        height: 122px;
+    }
+}

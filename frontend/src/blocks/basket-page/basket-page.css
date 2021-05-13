@@ -1,0 +1,10 @@
+.basket-page {
+    padding: 0 50px;
+    margin-bottom: 40px;
+}
+
+@media screen and (min-width: 1440px) {
+    .basket-page {
+        padding: 0 120px;
+    }
+}

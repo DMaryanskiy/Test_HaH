@@ -1,0 +1,15 @@
+.product-page__input {
+    width: 70px;
+    border: 1px solid #5b636b;
+}
+
+.product-page__amount-text {
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 160%;
+    margin: 20px 0 10px 0;
+}
+
+.element__button_product-page {
+    margin: auto 0 auto 40px;
+}

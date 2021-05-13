@@ -1,0 +1,11 @@
+.login__input {
+    margin-bottom: 50px;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: inherit;
+    font-size: 20px;
+}
+
+.login__input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fafaf9 inset;
+}

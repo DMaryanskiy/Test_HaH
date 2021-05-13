@@ -1,0 +1,10 @@
+.header__form_button {
+    width: 23px;
+    height: 23px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

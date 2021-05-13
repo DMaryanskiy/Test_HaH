@@ -1,0 +1,13 @@
+.header__logo-name {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 21.33px;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .header__logo-name {
+        font-size: 25px;
+    }
+}

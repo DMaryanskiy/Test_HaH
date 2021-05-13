@@ -1,0 +1,7 @@
+.menu {
+    height: 50px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    padding: 0 20% 0 20%;
+}

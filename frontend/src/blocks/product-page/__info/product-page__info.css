@@ -1,0 +1,13 @@
+.product-page__info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: calc(100% - 300px);
+    padding-right: 30px;
+}
+
+@media screen and (min-width: 1440px) {
+    .product-page__info {
+        width: calc(100% - 400px);
+    }
+}

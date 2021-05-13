@@ -1,0 +1,18 @@
+.basket-page__product {
+    display: flex;
+    width: 600px;
+    height: 125px;
+    border: 1px solid #ced0d2;
+    border-radius: 14px;
+    background-color: white;
+    padding: 27px 20px;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+@media screen and (min-width: 1440px) {
+    .basket-page__product {
+        width: 721px;
+        padding: 34px 22px;
+    }
+}

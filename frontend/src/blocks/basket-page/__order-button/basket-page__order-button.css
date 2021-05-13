@@ -1,0 +1,41 @@
+.basket-page__order-button {
+    background: #db4e66;
+    box-shadow: 2px 4px 9px #fbccd4;
+    border-radius: 14px;
+    border: none;
+    width: 306px;
+    height: 54px;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #ffffff;
+    transition: color ease 0.2s;
+    cursor: pointer;
+
+    margin-bottom: 70px;
+}
+
+.basket-page__order-button:hover {
+    color: #420000;
+}
+
+@media screen and (min-width: 1000px) {
+    .basket-page__order-button {
+        width: 200px;
+        height: 50px;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .basket-page__order-button {
+        width: 280px;
+        height: 50px;
+        margin-bottom: 60px;
+    }
+}

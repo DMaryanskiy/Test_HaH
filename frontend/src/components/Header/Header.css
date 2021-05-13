@@ -1,0 +1,12 @@
+@import url('../../blocks/header/header.css');
+@import url('../../blocks/header/__logo-wrapper/header__logo-wrapper.css');
+@import url('../../blocks/header/__logo/header__logo.css');
+@import url('../../blocks/header/__logo-name/header__logo-name.css');
+@import url('../../blocks/header/__icons/header__icons.css');
+@import url('../../blocks/header/__icons/_basket/header__icons_basket.css');
+@import url('../../blocks/header/__icons/_menu/header__icons_menu.css');
+@import url('../../blocks/header/__form/header__form.css');
+@import url('../../blocks/header/__button-wrapper/header__button-wrapper.css');
+@import url('../../blocks/header/__form/_button-picture/header__form_button-picture.css');
+@import url('../../blocks/header/__form/_button/header__form_button.css');
+@import url('../../blocks/header/__form/_field/header__form_field.css');

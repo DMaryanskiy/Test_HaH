@@ -1,0 +1,12 @@
+.basket-page__product-button {
+    background-image: url("../../../images/basket-page__basket.svg");
+    width: 17.19px;
+    height: 20.31px;
+    border: none;
+    background-color: white;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    bottom: 27px;
+    right: 20px;
+}

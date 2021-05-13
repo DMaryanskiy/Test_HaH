@@ -1,0 +1,9 @@
+@import url("../../blocks/product-page/product-page.css");
+@import url("../../blocks/product-page/__image/product-page__image.css");
+@import url("../../blocks/product-page/__price/producr-page__price.css");
+@import url("../../blocks/product-page/__text/product-page__text.css");
+@import url("../../blocks/product-page/__info/product-page__info.css");
+@import url("../../blocks/product-page/__title/product-page__title.css");
+@import url("../../blocks/product-page/__description/product-page__description.css");
+@import url("../../blocks/product-page/__input/product-page__input.css");
+@import url("../../blocks/product-page/__wrapper/product-page__wrapper.css");

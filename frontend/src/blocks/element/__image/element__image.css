@@ -1,0 +1,7 @@
+.element__image {
+    margin-top: 30px;
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 10px;
+}

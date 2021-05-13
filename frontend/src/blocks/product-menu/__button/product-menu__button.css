@@ -1,0 +1,77 @@
+.product-menu__button {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    font-size: 3.3px;
+}
+
+.product-menu__button span {
+    display: block;
+    position: absolute;
+    background: black;
+    top: 23.3px;
+    left: 7px;
+    height: 3.3px;
+    width: 36px;
+}
+
+.product-menu__button span::before,
+.product-menu__button span::after {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 3.3px;
+    background: black;
+    content: "";
+}
+
+.product-menu__button span::before {
+    top: -10px;
+}
+
+.product-menu__button span::after {
+    bottom: -10px;
+}
+
+.product-menu__button_line span::before,
+.product-menu__button_line span::after {
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.3s, 0s;
+}
+
+.product-menu__button_line span::before {
+    transition-property: top, transform;
+}
+
+.product-menu__button_line span::after {
+    transition-property: bottom, transform;
+}
+
+.product-menu__button_line.product-menu__button_is-active span {
+    background: none;
+}
+
+.product-menu__button_line.product-menu__button_is-active span::before {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+.product-menu__button_line.product-menu__button_is-active span::after {
+    bottom: 0;
+    transform: rotate(45deg);
+}
+
+.product-menu__button_line.product-menu__button_is-active span::before,
+.product-menu__button_line.product-menu__button_is-active span::after {
+    transition-delay: 0s, 0.3s;
+}

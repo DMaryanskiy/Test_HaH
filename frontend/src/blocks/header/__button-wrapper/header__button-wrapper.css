@@ -1,0 +1,8 @@
+.header__button-wrapper {
+    margin: 0;
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    right: 10px;
+    top: 6px;
+}

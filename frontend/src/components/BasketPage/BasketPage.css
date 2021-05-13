@@ -1,0 +1,15 @@
+@import url("../../blocks/basket-page/basket-page.css");
+@import url("../../blocks/basket-page/__title/basket-page__title.css");
+@import url("../../blocks/basket-page/__content/basket-page__content.css");
+@import url("../../blocks/basket-page/__products/basket-page__products.css");
+@import url("../../blocks/basket-page/__product/basket-page__product.css");
+@import url("../../blocks/basket-page/__picture/basket-page__picture.css");
+@import url("../../blocks/basket-page/__product-info/basket-page__product-info.css");
+@import url("../../blocks/basket-page/__product-title/basket-page__product-title.css");
+@import url("../../blocks/basket-page/__product-description/basket-page__product-description.css");
+@import url("../../blocks/basket-page/__amount/basket-page__amount.css");
+@import url("../../blocks/basket-page/__product-price/basket-page__product-price.css");
+@import url("../../blocks/basket-page/__product-button/basket-page__product-button.css");
+@import url("../../blocks/basket-page/__order/basket-page__order.css");
+@import url("../../blocks/basket-page/__order-price/basket-page__order-price.css");
+@import url("../../blocks/basket-page/__order-button/basket-page__order-button.css");

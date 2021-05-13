@@ -1,0 +1,18 @@
+.header__icons_menu {
+    background-image: url('../../../../images/header__menu.svg');
+    grid-area: menu;
+    margin: 24px 20px 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+    .header__icons_menu {
+        margin-right: 66px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header__icons_menu {
+        margin-top: 45px;
+        margin-left: 24px;
+    }
+}

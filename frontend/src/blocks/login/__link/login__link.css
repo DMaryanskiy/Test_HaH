@@ -1,0 +1,9 @@
+.login__link {
+    cursor: pointer;
+    color: black;
+    transition: color ease 0.3s;
+}
+
+.login__link:hover {
+    color: orange;
+}

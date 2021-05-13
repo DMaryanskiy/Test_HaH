@@ -1,0 +1,5 @@
+.about-us__wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}

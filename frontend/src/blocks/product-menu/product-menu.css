@@ -1,0 +1,16 @@
+.product-menu {
+    width: 50px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    position: sticky;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    transition: all ease 0.3s;
+}
+
+.product-menu.product-menu_active {
+    width: 400px;
+}

@@ -1,0 +1,36 @@
+.menu__link {
+    margin: auto auto;
+    display: inline-block;
+    color: white;
+    font-size: 16px;
+    line-height: 160%;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+.menu__link:after {
+    display: block;
+    content: "";
+    background-color: white;
+    height: 2px;
+    width: 0%;
+    left: 50%;
+    position: absolute;
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz--transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.menu__link:hover:after,
+.menu__link:focus:after {
+    width: 100%;
+}
+
+.menu__link_personal-account {
+    margin-right: 0px;
+}

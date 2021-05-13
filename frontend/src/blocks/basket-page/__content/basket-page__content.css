@@ -1,0 +1,6 @@
+.basket-page__content {
+    display: flex;
+    width: 100%;
+    margin-top: 53px;
+    justify-content: space-between;
+}
