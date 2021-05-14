@@ -12,6 +12,7 @@ import Footer from '../Footer/Footer';
 import BasketPage from '../BasketPage/BasketPage';
 import Popup from '../Popup/Popup';
 import './App.css';
+import ProductItem from '../ProductItem/ProductItem';
 
 
 
@@ -27,7 +28,6 @@ function App() {
         </Route>
       )
   }
-
 
 
   const handleMakeOrderClick = () => {
@@ -56,7 +56,9 @@ function App() {
       <Route exact path="/">
         <div className="product-main">
           <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
-          <Product  onCardClick={handleCardClick}/>  
+          <Product  
+            onCardClick={handleCardClick}
+          />  
         </div>
       </Route> 
       <Route path="/aboutUs">

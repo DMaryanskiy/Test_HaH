@@ -1,36 +1,45 @@
 import React from 'react';
 import axios from 'axios';
+import ProductItem from '../ProductItem/ProductItem';
 import './Product.css';
 
-class Product extends React.Component {
-    constructor(props){
-        super(props);
-        this._onCardClick = props.onCardClick;
-    }
-    
-    state = {
-        products:[]
+const Product = () => {
+
+    const [products, setProducts] = React.useState([]);
+    const [isFavorite, setIsFavorite] = React.useState(false);
+
+
+    const handleFavoriteClick = (product) => {
+        const currentState = isFavorite;
+        setIsFavorite(!currentState);
     }
 
-    componentDidMount(){
+    React.useEffect(() => {
         if (window.location.href == "http://localhost:3000/") {
             axios.get("http://127.0.0.1:8000")
             .then(res =>{
-                this.setState({
-                    products:res.data
-                })
+                setProducts(res.data);
             })
         } else {
             axios.get("http://127.0.0.1:8000/favourites")
             .then(res =>{
-                this.setState({
-                    products:res.data
-                })
+                setProducts(res.data);
             })
         }
+    }, []); 
+
+
+    if (window.location.href == "http://localhost:3000/") {
+        return (
+            <section className="elements"> 
+                {products.map(product => ( 
+                    <ProductItem product={product} onFavoriteClick={handleFavoriteClick} isFavorite={isFavorite}></ProductItem>
+                ))}
+            </section>
+        )
     }
 
-    render() {
+        /*
         if (window.location.href == "http://localhost:3000/") {
             return (
                 <section className="elements"> 
@@ -44,8 +53,8 @@ class Product extends React.Component {
                             <button className="element__button element__button_basket">добавить в корзину</button>
                             <div className="element__button-wrapper">
                                 <button 
-                                    className={`element__button-favourite ${this._favorite ? 'element__button-favourite_active' : 'element__button-favourite_inactive'}`} 
-                                    onClick={this._onClick}
+                                    className={`element__button-favourite ${this.state.isFavorite ? 'element__button-favourite_active' : 'element__button-favourite_inactive'}`} 
+                                    onClick={this._handleFavoriteClick}
                                 ></button>
                             </div>
                         </div>    
@@ -53,7 +62,7 @@ class Product extends React.Component {
                     ))}
                 </section>
             )
-        } else {
+        }  else {
             return (
                 <section className="elements"> 
                     {this.state.products.map(fav => ( 
@@ -66,8 +75,8 @@ class Product extends React.Component {
                             <button className="element__button element__button_basket">добавить в корзину</button>
                             <div className="element__button-wrapper">
                                 <button 
-                                    className={`element__button-favourite ${this._favorite ? 'element__button-favourite_active' : 'element__button-favourite_inactive'}`} 
-                                    onClick={this._onClick}
+                                    className={`element__button-favourite ${this.state.isFavorite ? 'element__button-favourite_active' : 'element__button-favourite_inactive'}`} 
+                                    onClick={this._handleFavoriteClick}
                                 ></button>
                             </div>
                         </div>    
@@ -75,8 +84,7 @@ class Product extends React.Component {
                     ))}
                 </section>
             )
-        }
-    }
+        } */
 }
 
 export default Product;
