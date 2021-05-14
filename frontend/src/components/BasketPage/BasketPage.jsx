@@ -2,7 +2,7 @@ import React from 'react';
 import './BasketPage.css';
 import help from '../../images/products/1.jpg'
 
-function BasketPage() {
+function BasketPage({onClick}) {
     return (
       <section className="basket-page">
           <h2 className="basket-page__title">Товаров в корзине: ##</h2>
@@ -51,7 +51,7 @@ function BasketPage() {
               </ul>
               <div className="basket-page__order">
                 <p className="basket-page__order-price">Итого: 9999 &#8381;</p>
-                <button className="basket-page__order-button">Оформить заказ</button>
+                <button onClick={onClick} className="basket-page__order-button">Оформить заказ</button>
               </div>
           </div>  
       </section>  

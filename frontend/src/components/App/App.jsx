@@ -10,17 +10,17 @@ import Registration from '../Registration/Registration';
 import ProductPage from '../ProductPage/ProductPage';
 import Footer from '../Footer/Footer';
 import BasketPage from '../BasketPage/BasketPage';
+import Popup from '../Popup/Popup';
 import './App.css';
+
 
 
 function App() {
 
-  const [isFavourite, setIsFavourite] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isClickedCard, setIsClickedCard] = React.useState(false);
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
   const handleCardClick = (e) => {
-      console.log(e.target);
       return (
         <Route path="/login">
           <Login />
@@ -28,13 +28,15 @@ function App() {
       )
   }
 
-  const handleFavouriteClick = () => {
-    if (isFavourite == false) {
-      setIsFavourite(true);
+
+
+  const handleMakeOrderClick = () => {
+    if (isPopupOpen == false) {
+      setIsPopupOpen(true);
     } else {
-      setIsFavourite(false);
+      setIsPopupOpen(false);
       };
-    }
+  };
   const handleMenuClick = () => {
     if (isMenuOpen == false) {
       setIsMenuOpen(true)
@@ -43,6 +45,10 @@ function App() {
     }
   };
 
+  function closePopup() {
+    setIsPopupOpen(false);
+  }
+
   return (
     <div className="page">
       <Header />
@@ -50,7 +56,7 @@ function App() {
       <Route exact path="/">
         <div className="product-main">
           <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
-          <Product onCardClick={handleCardClick}/>  
+          <Product  onCardClick={handleCardClick}/>  
         </div>
       </Route> 
       <Route path="/aboutUs">
@@ -66,15 +72,17 @@ function App() {
         <ProductPage />
       </Route>
       <Route path="/basket-page">
-        <BasketPage />
+        <BasketPage onClick={handleMakeOrderClick}/>
       </Route>
       <Route path="/favorites">
-        <div className="product-main">
-          <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
-          <Product onCardClick={handleCardClick}/>  
+        <div className="product-favorites">
+            <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
+            <Product  onCardClick={handleCardClick}/>  
         </div>
       </Route>
       <Footer />
+
+      <Popup isOpen={isPopupOpen} onClose={closePopup}></Popup>
       {/*<div>Автор иконок: <a href="https://www.flaticon.com/ru/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/ru/" title="Flaticon">www.flaticon.com</a></div>
       */}
     </div>

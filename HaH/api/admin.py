@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Products, Category, Favourite
+from .models import (
+        Products,
+        Category,
+        Favourite,
+        Purchase,
+    )
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
@@ -20,6 +25,14 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Favourite)
 class FavouriteAdmin(admin.ModelAdmin):
+    list_display = (
+        "pk",
+        "user",
+        "product",
+    )
+
+@admin.register(Purchase)
+class PurchaseAdmin(admin.ModelAdmin):
     list_display = (
         "pk",
         "user",

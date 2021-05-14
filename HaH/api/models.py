@@ -23,3 +23,13 @@ class Products(models.Model):
 class Favourite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_favourite")
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="product_favourite")
+
+    def __str__(self):
+        return self.product.title
+
+class Purchase(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_purchase")
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name="product_purchase")
+
+    def __str__(self):
+        return self.product.title

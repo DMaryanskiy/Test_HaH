@@ -1,9 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import './Product.css';
-import help from '../../images/products/1.jpg'
-import favourite from '../../images/favourite.svg'
-import favouriteActive from '../../images/favourite_active.svg'
 
 class Product extends React.Component {
     constructor(props){
@@ -29,7 +26,6 @@ class Product extends React.Component {
                 this.setState({
                     products:res.data
                 })
-                console.log(res.data);
             })
         }
     }
@@ -39,7 +35,7 @@ class Product extends React.Component {
             return (
                 <section className="elements"> 
                     {this.state.products.map(product => ( 
-                    <section className="element" >
+                    <section className="element" onClick={this._onCardClick}>
                         <img className="element__image" src={product.image}></img>
                         <h3 className="element__name">{product.title}</h3>
                         <p className="element__category">{product.category}</p>
@@ -47,7 +43,10 @@ class Product extends React.Component {
                         <div className="element__buttons">
                             <button className="element__button element__button_basket">добавить в корзину</button>
                             <div className="element__button-wrapper">
-                                <button className="element__button_favourite"></button>
+                                <button 
+                                    className={`element__button-favourite ${this._favorite ? 'element__button-favourite_active' : 'element__button-favourite_inactive'}`} 
+                                    onClick={this._onClick}
+                                ></button>
                             </div>
                         </div>    
                     </section>
@@ -58,7 +57,7 @@ class Product extends React.Component {
             return (
                 <section className="elements"> 
                     {this.state.products.map(fav => ( 
-                    <section className="element" >
+                    <section className="element" onClick={this._onCardClick}>
                         <img className="element__image" src={fav.product.image}></img>
                         <h3 className="element__name">{fav.product.title}</h3>
                         <p className="element__category">{fav.product.category}</p>
@@ -66,7 +65,10 @@ class Product extends React.Component {
                         <div className="element__buttons">
                             <button className="element__button element__button_basket">добавить в корзину</button>
                             <div className="element__button-wrapper">
-                                <button className="element__button_favourite"></button>
+                                <button 
+                                    className={`element__button-favourite ${this._favorite ? 'element__button-favourite_active' : 'element__button-favourite_inactive'}`} 
+                                    onClick={this._onClick}
+                                ></button>
                             </div>
                         </div>    
                     </section>

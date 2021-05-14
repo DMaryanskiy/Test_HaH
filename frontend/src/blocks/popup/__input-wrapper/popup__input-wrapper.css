@@ -1,0 +1,12 @@
+.popup__input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.popup__input-wrapper_adress {
+    display: flex;
+    width: calc(55% + 4px);
+    align-self: flex-end;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,19 @@
+.element__button-favourite {
+    position: absolute;
+    width: 45px;
+    height: 42px;
+    object-fit: cover;
+    border: none;
+    padding: 0;
+    background-color: white;
+    top: 0;
+    right: 0;
+    transition: opacity ease 0.3s;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.element__button-favourite:hover {
+    opacity: 0.5;
+}

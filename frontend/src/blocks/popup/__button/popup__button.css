@@ -1,0 +1,14 @@
+.popup__button {
+    width: 300px;
+    min-height: 50px;
+    margin: 30px auto;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: width ease 0.3s;
+}
+
+.popup__button:hover {
+    width: 350px;
+}

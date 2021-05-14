@@ -1,0 +1,30 @@
+.popup__input {
+    width: calc(55% - 15px);
+    border: 1px solid #a5aaaf;
+    border-radius: 2px;
+    padding-left: 15px;
+    font-size: 14px;
+}
+
+.popup__input_adress {
+    height: 25px;
+    width: 43%;
+}
+
+.popup__input_area {
+    padding-left: 15px;
+    font-size: 14px;
+    border: 1px solid #a5aaaf;
+    border-radius: 2px;
+    min-height: 60px;
+    max-width: calc(55% - 16px);
+    min-width: calc(55% - 16px);
+}
+
+.popup__input_payment {
+    width: calc(55% + 2px);
+    border: 1px solid #a5aaaf;
+    border-radius: 2px;
+    padding-left: 15px;
+    font-size: 14px;
+}
