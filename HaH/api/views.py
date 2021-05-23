@@ -1,7 +1,10 @@
+from django.db.models import fields
+import django_filters
 from rest_framework import serializers, status
 from rest_framework.generics import ListAPIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django_filters.rest_framework import FilterSet, DjangoFilterBackend
 from django.shortcuts import get_object_or_404
 from .serializers import (
         ProductsSerializer,
@@ -16,9 +19,18 @@ from .models import (
     )
 
 
+class CategoryFilter(FilterSet):
+    category = django_filters.CharFilter(field_name="category__category", lookup_expr="contains")
+
+    class Meta:
+        model = Products
+        fields = ["category", ]
+
 class ProductsListView(ListAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = CategoryFilter
 
 class FavouriteListView(ListAPIView):
     queryset = Favourite.objects.all()

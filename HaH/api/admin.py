@@ -20,7 +20,7 @@ class ProductsAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         "pk",
-        "title",
+        "category",
     )
 
 @admin.register(Favourite)
