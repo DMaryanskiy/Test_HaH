@@ -11,10 +11,10 @@ const ProductMenu = ({onMenuClick, isMenuOpen}) => {
             </button>
             <ul className={`product-menu__list ${isMenuOpen ? '' : 'product-menu__list_inactive'}`}> 
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Все продукты</Link>  
+                    <Link to="" className="product-menu__link">Все продукты</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Овощи</Link>  
+                    <Link to="?category=Овощи" className="product-menu__link">Овощи</Link>  
                 </li>
                 <li className="product-menu__item">
                     <Link to="#" className="product-menu__link">Фрукты</Link>  
