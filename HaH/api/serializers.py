@@ -1,8 +1,32 @@
-from django.db import models
-from django.db.models import fields
 from rest_framework import serializers
-from .models import Products, Favourite, Purchase
+from rest_framework.validators import UniqueValidator
+from .models import Products, Favourite, Purchase, User
 
+
+class UserSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())],
+    )
+    phone = serializers.CharField(required=False, default="")
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())],
+    )
+    password = serializers.CharField(min_length=8, write_only=True)
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            validated_data["username"],
+            phone=validated_data["phone"],
+            email=validated_data["email"],
+            password=validated_data["password"],
+        )
+        return user
+    
+    class Meta:
+        model = User
+        fields = ("id", "username", "phone", "email", "password")
 
 class ProductsSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()

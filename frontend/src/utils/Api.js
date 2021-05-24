@@ -4,13 +4,13 @@ class Api {
         this._headers = options.headers;
     }
 
-    buyProduct({ id, category, title, price, image }) {
+    buyProduct({ id, category, title, price, image, description }) {
         return fetch(`${this._baseUrl}/purchases/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ category, title, price, image }),
+            body: JSON.stringify({ category, title, price, image, description }),
         }).then(this._checkResponse);
     }
 

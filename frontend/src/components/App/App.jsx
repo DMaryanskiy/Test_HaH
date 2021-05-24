@@ -60,7 +60,15 @@ function App() {
             onCardClick={handleCardClick}
           />  
         </div>
-      </Route> 
+      </Route>
+      <Route exact path="/?category=Овощи">
+        <div className="product-main">
+          <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
+          <Product  
+            onCardClick={handleCardClick}
+          />  
+        </div>
+      </Route>  
       <Route path="/aboutUs">
         <AboutUs />
       </Route>

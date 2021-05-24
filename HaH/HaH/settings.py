@@ -146,3 +146,5 @@ CORS_ALLOWED_ORIGINS = [
 REST_FRAMEWORK = {
         'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     } 
+
+AUTH_USER_MODEL = "api.User"
