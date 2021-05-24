@@ -4,6 +4,17 @@ class Api {
         this._headers = options.headers;
     }
 
+    buyProduct({ id, category, title, price, image }) {
+        return fetch(`${this._baseUrl}/purchases/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ category, title, price, image }),
+        }).then(this._checkResponse);
+    }
+
+    /*
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers,
@@ -79,7 +90,7 @@ class Api {
                 avatar: link,
             }),
         }).then(this._checkResponse);
-    }
+    } */
 
     _checkResponse(res) {
         if (res.ok) {
@@ -90,9 +101,8 @@ class Api {
 }
 
 export const api = new Api({
-    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-20",
+    baseUrl: "http://127.0.0.1:8000",
     headers: {
-        authorization: "41e04913-672b-4210-b06d-ef046481fb20",
         "Content-Type": "application/json",
     },
 });

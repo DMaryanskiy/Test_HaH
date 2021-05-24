@@ -14,25 +14,25 @@ const ProductMenu = ({onMenuClick, isMenuOpen}) => {
                     <Link to="" className="product-menu__link">Все продукты</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="?category=Овощи" className="product-menu__link">Овощи</Link>  
+                    <Link to="/?category=Овощи" className="product-menu__link">Овощи</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Фрукты</Link>  
+                    <Link to="/?category=Фрукты" className="product-menu__link">Фрукты</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Ягоды</Link>  
+                    <Link to="/?category=Ягоды" className="product-menu__link">Ягоды</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Рыба</Link>  
+                    <Link to="/?category=Рыба" className="product-menu__link">Рыба</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Мясо</Link>  
+                    <Link to="/?category=Мясо" className="product-menu__link">Мясо</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Морепродукты</Link>  
+                    <Link to="/?category=Морепродукты" className="product-menu__link">Морепродукты</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="#" className="product-menu__link">Молочная продукция</Link>  
+                    <Link to="/?category=Молочная%D20продукция" className="product-menu__link">Молочная продукция</Link>  
                 </li>
             </ul>
         </div>
