@@ -11,9 +11,9 @@ import ProductPage from '../ProductPage/ProductPage';
 import Footer from '../Footer/Footer';
 import BasketPage from '../BasketPage/BasketPage';
 import Popup from '../Popup/Popup';
+import { api } from '../../utils/Api';
+import * as auth from '../../utils/auth';
 import './App.css';
-import ProductItem from '../ProductItem/ProductItem';
-
 
 
 function App() {
@@ -29,6 +29,15 @@ function App() {
       )
   }
 
+  // TODO: catch регистрация
+    const handleRegister = (data) => { 
+        const {name, number, email, password } = data;
+        auth.register({name, number, email, password })
+          .then(res => {
+            console.log('OТКРЫВАЕМ ПОПАП')
+          })
+        
+    }
 
   const handleMakeOrderClick = () => {
     if (isPopupOpen == false) {
@@ -76,7 +85,7 @@ function App() {
         <Login />
       </Route>
       <Route path="/registration">
-        <Registration />
+        <Registration onRegister={handleRegister} />
       </Route>
       <Route path="/product-page">
         <ProductPage />
