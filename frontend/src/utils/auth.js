@@ -1,13 +1,13 @@
 export const BASE_URL = "http://127.0.0.1:8000";
 
-export const register = ({ password, email }) => {
+export const register = ({ name, number, email, password }) => {
     return fetch(`${BASE_URL}/signup`, {
         method: "POST",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ password, email }),
+        body: JSON.stringify({ name, number, email, password }),
     }).then((res) => checkResponse(res));
 };
 

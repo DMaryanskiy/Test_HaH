@@ -1,14 +1,14 @@
 import React from 'react';
 import './Registration.css'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
     
 
 const Registration = ({onRegister}) => {
 
   const [data, setData] = React.useState({ 
-    name: '', 
-    number: '', 
+    username: '', 
+    phone: '', 
     email: '',
     password: '',
     "repeat-password": ''
@@ -34,11 +34,11 @@ const Registration = ({onRegister}) => {
         <section className="login registration">
           <h2 className="login__title">Регистрация</h2>
           <form className="login__form" onSubmit={handleSubmit}>
-            <input onChange={handleChange} className="login__input" type="text" name="name" placeholder="Имя пользователя"/>
-            <input onChange={handleChange} className="login__input" type="text" name="number" placeholder="Номер телефона"/>
-            <input onChange={handleChange} className="login__input" type="email" name="email" placeholder="Адрес электронной почты"/>
-            <input onChange={handleChange} className="login__input" type="password" name="password" placeholder="Пароль"/>
-            <input onChange={handleChange} className="login__input" type="password" name="repeat-password" placeholder="Повторите пароль"/>
+            <input onChange={handleChange} className="login__input" type="text" name="username" placeholder="Имя пользователя" value={data.username} required/>
+            <input onChange={handleChange} className="login__input" type="text" name="phone" placeholder="Номер телефона" value={data.numberl}/>
+            <input onChange={handleChange} className="login__input" type="email" name="email" placeholder="Адрес электронной почты" value={data.email} required/>
+            <input onChange={handleChange} className="login__input" type="password" name="password" placeholder="Пароль" value={data.password} required/>
+            <input onChange={handleChange} className="login__input" type="password" name="repeat-password" placeholder="Повторите пароль" value={data['repeat-password']} required/>
             <button className="login__button registration__button" type="submit">Зарегистрироваться</button>
           </form>
         </section>

@@ -31,8 +31,9 @@ function App() {
 
   // TODO: catch регистрация
     const handleRegister = (data) => { 
-        const {name, number, email, password } = data;
-        auth.register({name, number, email, password })
+        const {username, phone, email, password } = data;
+        console.log({username, phone, email, password});
+        auth.register({username, phone, email, password })
           .then(res => {
             console.log('OТКРЫВАЕМ ПОПАП')
           })
