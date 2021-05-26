@@ -1,7 +1,5 @@
-from django.contrib.auth.models import User
-from django.db.models import fields
 import django_filters
-from rest_framework import serializers, status
+from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response

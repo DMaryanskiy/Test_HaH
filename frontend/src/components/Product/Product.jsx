@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import ProductItem from '../ProductItem/ProductItem';
-import {api} from '../../utils/Api';
 import './Product.css';
 
 const Product = () => {

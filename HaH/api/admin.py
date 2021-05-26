@@ -4,6 +4,7 @@ from .models import (
         Category,
         Favourite,
         Purchase,
+        User
     )
 
 @admin.register(Products)
@@ -37,4 +38,12 @@ class PurchaseAdmin(admin.ModelAdmin):
         "pk",
         "user",
         "product",
+    )
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = (
+        "pk",
+        "username",
+        "email"
     )

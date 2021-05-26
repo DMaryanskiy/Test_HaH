@@ -1,10 +1,8 @@
 import React from 'react';
 import './Registration.css'
-//import { Link } from 'react-router-dom';
-
     
 
-const Registration = ({onRegister}) => {
+const Registration = ({onRegister, open}) => {
 
   const [data, setData] = React.useState({ 
     "username": '', 
@@ -21,8 +19,8 @@ const Registration = ({onRegister}) => {
         onRegister(data);
       } else {
         console.log('НЕ РЕГИСТРАЦИЯ')
+        open()
       }
-
     } 
 
     function handleChange(e) {
