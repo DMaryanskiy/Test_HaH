@@ -1,7 +1,5 @@
 import React from 'react';
 import './Registration.css'
-//import { Link } from 'react-router-dom';
-
     
 
 const Registration = ({onRegister}) => {
@@ -22,7 +20,6 @@ const Registration = ({onRegister}) => {
       } else {
         console.log('НЕ РЕГИСТРАЦИЯ')
       }
-
     } 
 
     function handleChange(e) {
