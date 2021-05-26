@@ -22,7 +22,7 @@ from .models import (
 
 
 class UserCreate(APIView):
-    def post(self, request, format="json"):
+    def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
