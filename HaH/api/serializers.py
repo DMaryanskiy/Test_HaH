@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())],
     )
-    password = serializers.CharField(min_length=8, write_only=True)
+    password = serializers.CharField(min_length=8)
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -26,7 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ("id", "username", "phone", "email", "password")
+        fields = "__all__"
 
 class ProductsSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()

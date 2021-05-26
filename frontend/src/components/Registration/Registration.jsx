@@ -7,10 +7,10 @@ import './Registration.css'
 const Registration = ({onRegister}) => {
 
   const [data, setData] = React.useState({ 
-    username: '', 
-    phone: '', 
-    email: '',
-    password: '',
+    "username": '', 
+    "phone": '', 
+    "email": '',
+    "password": '',
     "repeat-password": ''
   });
 
@@ -32,6 +32,7 @@ const Registration = ({onRegister}) => {
 
     return (
         <section className="login registration">
+          <script type="application/json" dangerouslySetInnerHTML={{  __html: JSON.stringify(data)}}/>
           <h2 className="login__title">Регистрация</h2>
           <form className="login__form" onSubmit={handleSubmit}>
             <input onChange={handleChange} className="login__input" type="text" name="username" placeholder="Имя пользователя" value={data.username} required/>
