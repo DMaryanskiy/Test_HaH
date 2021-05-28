@@ -6,20 +6,12 @@ import './Product.css';
 const Product = () => {
 
     const [products, setProducts] = React.useState([]);
-    const [isFavorite, setIsFavorite] = React.useState(false);
-
-
-    const handleFavoriteClick = (product) => {
-        const currentState = isFavorite;
-        setIsFavorite(!currentState);
-    }
 
     React.useEffect(() => {
         if (window.location.href == "http://localhost:3000/") {
             axios.get("http://127.0.0.1:8000")
             .then(res =>{
                 setProducts(res.data);
-                console.log(res.data);
             })
         } else if (window.location.href == "http://localhost:3000/?category=%D0%9E%D0%B2%D0%BE%D1%89%D0%B8") {
             axios.get("http://127.0.0.1:8000/?category=Овощи")
@@ -38,7 +30,7 @@ const Product = () => {
         return (
             <section className="elements"> 
                 {products.map(product => ( 
-                    <ProductItem product={product} key={product.id} onFavoriteClick={handleFavoriteClick} isFavorite={isFavorite}></ProductItem>
+                    <ProductItem product={product} key={product.id}></ProductItem>
                 ))}
             </section>
         )

@@ -1,14 +1,17 @@
 import React from 'react';
 import { api } from '../../utils/Api';
 
-function ProductItem ({product, onFavoriteClick, isFavorite}) {
+function ProductItem ({product}) {
+
+  const [isFavorite, setIsFavorite] = React.useState(false);
 
   const handleFavoriteClick = () => {
-    onFavoriteClick(product);
+    isFavorite 
+    ? setIsFavorite(false)
+    : setIsFavorite(true);
   }
 
   const handleButtonClick = () => {
-    console.log(product)
     api.buyProduct(product)
       .catch(err => console.log(err));
 }
