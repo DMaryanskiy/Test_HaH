@@ -8,12 +8,12 @@
     background-color: white;
     top: 0;
     right: 0;
-    transition: opacity ease 0.3s;
+    transition: all ease 0.4s;
     cursor: pointer;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .element__button-favourite:hover {
-    opacity: 0.5;
+    opacity: 0.8;
 }

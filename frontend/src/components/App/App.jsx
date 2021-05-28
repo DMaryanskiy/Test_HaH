@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import NavBar from '../NavBar/NavBar';
 import AboutUs from '../AboutUs/AboutUs';
@@ -14,29 +14,61 @@ import Popup from '../Popup/Popup';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import * as auth from '../../utils/auth';
 import './App.css';
+//import { api } from '../../utils/Api';
 
 
 function App() {
+  
+    const history = useHistory();
 
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [isInfoPopupOpen, setIsInfoPopupOpen] = React.useState(false);
-  const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+    const [isInfoPopupOpen, setIsInfoPopupOpen] = React.useState(false);
+    const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
+    const [loggedIn, setLoggedIn] = React.useState(false);
 
-  const handleCardClick = (e) => {
-      return (
-        <Route path="/login">
-          <Login />
-        </Route>
-      )
-  }
+    React.useEffect(() => {
+        if (loggedIn) {
+            history.push("/");
+        }
+    }, [loggedIn]);
+
+    const handleCardClick = (e) => {
+        return (
+          <Route path="/login">
+            <Login />
+          </Route>
+        )
+    }
+
+    const handleLogout = () => {
+      setLoggedIn(false);
+    }
+
+
+    const handleLogin = (data) => {
+      console.log(data);
+      //setLoggedIn(true); TODO: удали, это для тестов
+      const {password, email} = data;
+      auth.login({password, email})
+      .then((data) => {
+        if (!data) {
+          //history.push('/sign-in');
+        } else {
+          setLoggedIn(true);
+          //history.push('/');  
+        }
+      })
+      .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+      });
+    }
 
     const handleRegister = (data) => { 
         const {username, phone, email, password } = data;
         console.log({username, phone, email, password});
         auth.register({username, phone, email, password })
-          .then(res => {
-            console.log('OТКРЫВАЕМ ПОПАП');
+          .then(() => {
             setIsSuccessAuth(true);
             handleRegisterClick();
           })
@@ -46,10 +78,10 @@ function App() {
             handleRegisterClick();
         });
         
-    }
+    } 
 
-    console.log(isSuccessAuth);
 
+    // open successful or unsuccessful registration popup
     const handleRegisterClick = () => {
       if (isInfoPopupOpen === false) {
         setIsInfoPopupOpen(true);
@@ -82,7 +114,8 @@ function App() {
     return (
       <div className="page">
         <Header />
-        <NavBar />
+        <NavBar loggedIn ={loggedIn} handleLogout={handleLogout}/>
+        
         <Route exact path="/">
           <div className="product-main">
             <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
@@ -103,7 +136,7 @@ function App() {
           <AboutUs />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login onLogin={handleLogin}/>
         </Route>
         <Route path="/registration">
           <Registration onRegister={handleRegister} open={handleRegisterClick}/>
@@ -123,7 +156,7 @@ function App() {
         <Footer />
 
         <Popup isOpen={isPopupOpen} onClose={closePopup}></Popup>
-        <InfoTooltip auth={isSuccessAuth} isOpen={isInfoPopupOpen} onClose={closePopup} onClose={closePopup}></InfoTooltip>
+        <InfoTooltip auth={isSuccessAuth} isOpen={isInfoPopupOpen} onClose={closePopup}></InfoTooltip>
         {/*<div>Автор иконок: <a href="https://www.flaticon.com/ru/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/ru/" title="Flaticon">www.flaticon.com</a></div>
         */}
       </div>
