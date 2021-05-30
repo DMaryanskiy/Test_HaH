@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'knox',
     'api',
 ]
 
@@ -145,9 +146,7 @@ CORS_ALLOWED_ORIGINS = [
 
 REST_FRAMEWORK = {
         'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-        'DEFAULT_PARSER_CLASSES': (
-            'rest_framework.parsers.JSONParser',
-        )
+        'DEFAULT_AUTHENTICATION_CLASSES' : ['knox.auth.TokenAuthentication',]
     } 
 
 AUTH_USER_MODEL = "api.User"

@@ -1,11 +1,19 @@
 import django_filters
-from rest_framework import status
-from rest_framework.generics import ListAPIView
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from django_filters.rest_framework import FilterSet, DjangoFilterBackend
+
+from django.contrib.auth import login, logout
 from django.shortcuts import get_object_or_404
+
+from knox.models import AuthToken
+from knox.views import LoginView as KnoxLoginView
+
+from rest_framework import serializers, status, permissions
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from .serializers import (
         ProductsSerializer,
         FavouriteSerializer,
@@ -19,12 +27,30 @@ from .models import (
     )
 
 
+class UserLogin(KnoxLoginView):
+    permission_classes = [permissions.AllowAny, ]
+
+    def post(self, request, format=None):
+        serializer = AuthTokenSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data["user"]
+        login(request, user)
+        return super(UserLogin, self).post(request, format=None)
+
+class UserLogout(APIView):
+    def get(self, request):
+        logout(request)
+        return Response({"success": True}, status=status.HTTP_200_OK)
+
 class UserCreate(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            user = serializer.save()
+            return Response({
+                "user" : serializer.data,
+                "token" : AuthToken.objects.create(user)[1]
+            }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CategoryFilter(FilterSet):
