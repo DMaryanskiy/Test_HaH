@@ -4,7 +4,7 @@ import './Login.css'
 
 const Login = ({onLogin}) => {
 
-    const [data, setData] = React.useState({ email: '', password: '' });
+    const [data, setData] = React.useState({ username: '', password: '' });
 
     function handleChange(e) {
       const { name, value } = e.target
@@ -20,7 +20,7 @@ const Login = ({onLogin}) => {
         <section className="login">
           <h2 className="login__title">Вход</h2>
           <form onSubmit={handleSubmit} className="login__form">
-            <input onChange={handleChange} className="login__input" type="email" name="email" placeholder="Введите адрес электронной почты"/>
+            <input onChange={handleChange} className="login__input" type="text" name="username" placeholder="Введите адрес электронной почты"/>
             <input onChange={handleChange} className="login__input" type="password" name="password" placeholder="Введите пароль"/>
             <button className="login__button" type="submit">Войти</button>
           </form>

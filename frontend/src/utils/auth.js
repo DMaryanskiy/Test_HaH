@@ -11,14 +11,24 @@ export const register = ({ username, phone, email, password }) => {
     }).then((res) => checkResponse(res));
 };
 
-export const login = ({ password, email }) => {
-    return fetch(`${BASE_URL}/signin`, {
+export const login = ({ password, username }) => {
+    return fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ password, email }),
+        body: JSON.stringify({ password, username }),
+    }).then((res) => checkResponse(res));
+};
+
+export const logout = () => {
+    return fetch(`${BASE_URL}/logout`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
     }).then((res) => checkResponse(res));
 };
 

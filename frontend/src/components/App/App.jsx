@@ -33,6 +33,18 @@ function App() {
         }
     }, [loggedIn]);
 
+    
+
+    React.useEffect(() => {
+        tokenCheck()
+    }, [])
+
+    //проверка токена
+    const tokenCheck = () => {
+      if (localStorage.getItem('knox')) {
+        setLoggedIn(true);
+    }}
+
     const handleCardClick = (e) => {
         return (
           <Route path="/login">
@@ -43,20 +55,34 @@ function App() {
 
     const handleLogout = () => {
       setLoggedIn(false);
+      auth.logout()
+        .then(() => {
+          console.log('logout');
+          localStorage.removeItem('knox');
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        })
     }
+
+    console.log(localStorage);
 
 
     const handleLogin = (data) => {
-      console.log(data);
-      //setLoggedIn(true); TODO: удали, это для тестов
-      const {password, email} = data;
-      auth.login({password, email})
+      const {password, username} = data;
+      auth.login({password, username})
       .then((data) => {
+        console.log(data);
         if (!data) {
-          //history.push('/sign-in');
-        } else {
+          console.log('Error');
+        }
+        if (data.token) {
+          localStorage.setItem('knox', data.token);
           setLoggedIn(true);
-          //history.push('/');  
+          history.push('/');  
+        } else {
+          localStorage.removeItem('knox', data.token);
+          history.push('/login');
         }
       })
       .catch((err) => {
