@@ -50,11 +50,16 @@ class ProductsListView(ListAPIView):
 class FavouriteListView(ListAPIView):
     queryset = Favourite.objects.all()
     serializer_class = FavouriteSerializer
-
+"""
 class PurchaseListView(ListAPIView):
-    queryset = Purchase.objects.all()
     serializer_class = PurchaseSerializer
 
+    def get_queryset(self):
+        print(self.request.user)
+        user = get_object_or_404(User, username=self.request.data["username"])
+        queryset = Purchase.objects.filter(user=user)
+        return queryset
+"""
 class UserByTokenView(APIView):
     def post(self, request):
         data = {
@@ -62,6 +67,13 @@ class UserByTokenView(APIView):
             "username": str(request.user.username)
         }
         return Response(data, status=status.HTTP_201_CREATED)
+
+@api_view(["GET"])
+def purchase_api_list(request, username):
+    user = get_object_or_404(User, username=username)
+    purchase_list = Purchase.objects.filter(user=user)
+    serializer = PurchaseSerializer(purchase_list, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(["POST", "DELETE"])
 def favourite_api_detail(request, product_id):
@@ -86,21 +98,27 @@ def favourite_api_detail(request, product_id):
 
 @api_view(["POST", "DELETE"])
 def purchase_api_detail(request, product_id):
+    user = get_object_or_404(User, username=request.data["username"])
     product = get_object_or_404(Products, pk=product_id)
     if request.method == "POST":
-        serializer = PurchaseSerializer(data=request.data, context= {
-                "request_user": request.user,
+        serializer = PurchaseSerializer(data={
+            "user": user,
+            "product": product
+        }, context= {
+                "request_user": user,
                 "request_product": product,
             }
         )
         serializer.is_valid(raise_exception=True)
-        serializer.save(user=request.user, product=product)
+        serializer.save(user=user, product=product)
         return Response({"success": True}, status=status.HTTP_201_CREATED)
     
     if request.method == "DELETE":
+        user = get_object_or_404(User, username=request.data["username"])
+        product = get_object_or_404(Products, pk=product_id)
         get_object_or_404(
             Purchase,
-            user=request.user,
+            user=user,
             product=product
         ).delete()
         return Response({"success": True}, status=status.HTTP_204_NO_CONTENT)

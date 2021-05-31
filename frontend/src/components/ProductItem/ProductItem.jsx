@@ -1,9 +1,12 @@
 import React from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { api } from '../../utils/Api';
 
 function ProductItem ({product}) {
 
   const [isFavorite, setIsFavorite] = React.useState(false);
+  const currentUser = React.useContext(CurrentUserContext);
+  console.log(currentUser);
 
   const handleFavoriteClick = () => {
     isFavorite 
@@ -12,7 +15,11 @@ function ProductItem ({product}) {
   }
 
   const handleButtonClick = () => {
-    api.buyProduct(product)
+    console.log(currentUser, product);
+    api.buyProduct(currentUser, product)
+      .then( () => {
+        console.log('работает');
+      })
       .catch(err => console.log(err));
 }
 
