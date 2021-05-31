@@ -4,13 +4,27 @@ class Api {
         this._headers = options.headers;
     }
 
-    buyProduct({ id, category, title, price, image, description }) {
-        return fetch(`${this._baseUrl}/purchases/${id}`, {
+    buyProduct(user, product) {
+        const username = user.username;
+        return fetch(`${this._baseUrl}/purchase/${product.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ category, title, price, image, description }),
+            body: JSON.stringify({
+                username,
+                product,
+            }),
+        }).then(this._checkResponse);
+    }
+
+    getUserInfo() {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${localStorage.getItem("token")}`,
+            },
         }).then(this._checkResponse);
     }
 
