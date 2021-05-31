@@ -29,6 +29,7 @@ function App() {
     const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({username:''});
+    //const [purchase, setPurchase] = React.useState([]);
 
     React.useEffect(() => {
         if (loggedIn) {
@@ -44,8 +45,18 @@ function App() {
           })
         }
     }, [loggedIn]);
-    
-    console.log(currentUser);
+
+    /*
+    React.useEffect(() => {
+        if (loggedIn) {
+          api.getPurchase(currentUser.username)
+          .then(data => {
+            setPurchase(data);
+          })
+        }
+    }, []); */
+
+
 
     React.useEffect(() => {
         tokenCheck()
@@ -178,10 +189,10 @@ function App() {
               <Registration onRegister={handleRegister} open={handleRegisterClick}/>
             </Route>
             <Route path="/product-page">
-              <ProductPage />
+              <ProductPage/>
             </Route>
             <Route path="/basket-page">
-              <BasketPage onClick={handleMakeOrderClick}/>
+              <BasketPage onClick={handleMakeOrderClick} loggedIn={loggedIn}/>
             </Route>
             <Route path="/favorites">
               <div className="product-favorites">

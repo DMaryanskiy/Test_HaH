@@ -1,5 +1,9 @@
 .basket-page__amount {
     margin: -4px 0 0 30px;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 15px;
+    position: absolute;
+    top: 34px;
+    right: 125px;
+    width: 40px;
 }

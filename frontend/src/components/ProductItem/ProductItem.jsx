@@ -6,7 +6,6 @@ function ProductItem ({product}) {
 
   const [isFavorite, setIsFavorite] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
-  console.log(currentUser);
 
   const handleFavoriteClick = () => {
     isFavorite 
@@ -17,7 +16,7 @@ function ProductItem ({product}) {
   const handleButtonClick = () => {
     console.log(currentUser, product);
     api.buyProduct(currentUser, product)
-      .then( () => {
+      .then(() => {
         console.log('работает');
       })
       .catch(err => console.log(err));
