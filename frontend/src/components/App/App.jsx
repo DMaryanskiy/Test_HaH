@@ -41,7 +41,7 @@ function App() {
 
     //проверка токена
     const tokenCheck = () => {
-      if (localStorage.getItem('knox')) {
+      if (localStorage.getItem('token')) {
         setLoggedIn(true);
     }}
 
@@ -58,7 +58,7 @@ function App() {
       auth.logout()
         .then(() => {
           console.log('logout');
-          localStorage.removeItem('knox');
+          localStorage.removeItem('token');
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -76,12 +76,12 @@ function App() {
         if (!data) {
           console.log('Error');
         }
-        if (data.token) {
-          localStorage.setItem('knox', data.token);
+        if (data.auth_token) {
+          localStorage.setItem('token', data.auth_token);
           setLoggedIn(true);
           history.push('/');  
         } else {
-          localStorage.removeItem('knox', data.token);
+          localStorage.removeItem('token', data.auth_token);
           history.push('/login');
         }
       })

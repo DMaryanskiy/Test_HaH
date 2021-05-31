@@ -12,7 +12,7 @@ export const register = ({ username, phone, email, password }) => {
 };
 
 export const login = ({ password, username }) => {
-    return fetch(`${BASE_URL}/login`, {
+    return fetch(`${BASE_URL}/login/token/login/`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -23,7 +23,7 @@ export const login = ({ password, username }) => {
 };
 
 export const logout = () => {
-    return fetch(`${BASE_URL}/logout`, {
+    return fetch(`${BASE_URL}/login/token/logout/`, {
         method: "GET",
         headers: {
             Accept: "application/json",

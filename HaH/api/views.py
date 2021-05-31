@@ -1,16 +1,12 @@
 import django_filters
 from django_filters.rest_framework import FilterSet, DjangoFilterBackend
 
-from django.contrib.auth import login, logout
+from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404
 
-from knox.models import AuthToken
-from knox.views import LoginView as KnoxLoginView
-
-from rest_framework import serializers, status, permissions
-from rest_framework.authtoken.serializers import AuthTokenSerializer
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.generics import ListAPIView
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -24,23 +20,9 @@ from .models import (
         Products,
         Favourite,
         Purchase,
+        User,
     )
 
-
-class UserLogin(KnoxLoginView):
-    permission_classes = [permissions.AllowAny, ]
-
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data["user"]
-        login(request, user)
-        return super(UserLogin, self).post(request, format=None)
-
-class UserLogout(APIView):
-    def get(self, request):
-        logout(request)
-        return Response({"success": True}, status=status.HTTP_200_OK)
 
 class UserCreate(APIView):
     def post(self, request):
@@ -49,7 +31,6 @@ class UserCreate(APIView):
             user = serializer.save()
             return Response({
                 "user" : serializer.data,
-                "token" : AuthToken.objects.create(user)[1]
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -73,6 +54,14 @@ class FavouriteListView(ListAPIView):
 class PurchaseListView(ListAPIView):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseSerializer
+
+class UserByTokenView(APIView):
+    def post(self, request):
+        data = {
+            "id": str(request.user.id),
+            "username": str(request.user.username)
+        }
+        return Response(data, status=status.HTTP_201_CREATED)
 
 @api_view(["POST", "DELETE"])
 def favourite_api_detail(request, product_id):
