@@ -109,11 +109,8 @@ def purchase_api_detail(request, product_id):
         return Response({"success": True}, status=status.HTTP_201_CREATED)
     
     if request.method == "DELETE":
-        user = get_object_or_404(User, username=request.data["username"])
-        product = get_object_or_404(Products, pk=product_id)
         get_object_or_404(
             Purchase,
-            user=user,
             product=product
         ).delete()
         return Response({"success": True}, status=status.HTTP_204_NO_CONTENT)
