@@ -32,7 +32,7 @@ const ProductMenu = ({onMenuClick, isMenuOpen}) => {
                     <Link to="/?category=Морепродукты" className="product-menu__link">Морепродукты</Link>  
                 </li>
                 <li className="product-menu__item">
-                    <Link to="/?category=Молочная%D20продукция" className="product-menu__link">Молочная продукция</Link>  
+                    <Link to="/?category=Молочная+продукция" className="product-menu__link">Молочная продукция</Link>  
                 </li>
             </ul>
         </div>
