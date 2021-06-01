@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework import status
 from rest_framework.decorators import api_view
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -72,7 +72,11 @@ class UserByTokenView(APIView):
 def purchase_api_list(request, username):
     user = get_object_or_404(User, username=username)
     purchase_list = Purchase.objects.filter(user=user)
-    serializer = PurchaseSerializer(purchase_list, many=True)
+    serializer = PurchaseSerializer(
+        purchase_list,
+        many=True,
+        context={"request": request}
+    )
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(["POST", "DELETE"])
