@@ -28,6 +28,36 @@ class Api {
         }).then(this._checkResponse);
     }
 
+    getPurchase(username) {
+        return fetch(`${this._baseUrl}/purchases/${username}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        }).then(this._checkResponse);
+    }
+
+    getAllProducts() {
+        return fetch(`${this._baseUrl}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        }).then(this._checkResponse);
+    }
+
+    getProductByCategory(url) {
+        return fetch(`${this._baseUrl}/${url}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        }).then(this._checkResponse);
+    }
+
     /*
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {

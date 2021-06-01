@@ -16,7 +16,6 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import * as auth from '../../utils/auth';
 import './App.css';
 import { api } from '../../utils/Api';
-//import { api } from '../../utils/Api';
 
 
 function App() {
@@ -44,8 +43,6 @@ function App() {
           })
         }
     }, [loggedIn]);
-    
-    console.log(currentUser);
 
     React.useEffect(() => {
         tokenCheck()
@@ -155,7 +152,7 @@ function App() {
             <Route exact path="/">
               <div className="product-main">
                 <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
-                <Product  
+                <Product  loggedIn={loggedIn}
                   onCardClick={handleCardClick}
                 />  
               </div>
@@ -178,10 +175,10 @@ function App() {
               <Registration onRegister={handleRegister} open={handleRegisterClick}/>
             </Route>
             <Route path="/product-page">
-              <ProductPage />
+              <ProductPage/>
             </Route>
             <Route path="/basket-page">
-              <BasketPage onClick={handleMakeOrderClick}/>
+              <BasketPage onClick={handleMakeOrderClick} loggedIn={loggedIn}/>
             </Route>
             <Route path="/favorites">
               <div className="product-favorites">

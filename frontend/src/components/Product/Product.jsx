@@ -8,12 +8,12 @@ const Product = () => {
     const [products, setProducts] = React.useState([]);
 
     React.useEffect(() => {
-        if (window.location.href == "http://localhost:3000/") {
+        if (window.location.href === "http://localhost:3000/") {
             axios.get("http://127.0.0.1:8000")
             .then(res =>{
                 setProducts(res.data);
             })
-        } else if (window.location.href == "http://localhost:3000/?category=%D0%9E%D0%B2%D0%BE%D1%89%D0%B8") {
+        } else if (window.location.href === "http://localhost:3000/?category=%D0%9E%D0%B2%D0%BE%D1%89%D0%B8") {
             axios.get("http://127.0.0.1:8000/?category=Овощи")
             .then(res =>{
                 setProducts(res.data);
@@ -25,7 +25,7 @@ const Product = () => {
             })
         }
 
-    }, [/*products*/]); //TODO: пофиксить зацикливание
+    }, [/*products*/]); //TODO: пофиксить зацикливание */
 
         return (
             <section className="elements"> 
