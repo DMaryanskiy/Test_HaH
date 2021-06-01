@@ -50,16 +50,7 @@ class ProductsListView(ListAPIView):
 class FavouriteListView(ListAPIView):
     queryset = Favourite.objects.all()
     serializer_class = FavouriteSerializer
-"""
-class PurchaseListView(ListAPIView):
-    serializer_class = PurchaseSerializer
 
-    def get_queryset(self):
-        print(self.request.user)
-        user = get_object_or_404(User, username=self.request.data["username"])
-        queryset = Purchase.objects.filter(user=user)
-        return queryset
-"""
 class UserByTokenView(APIView):
     def post(self, request):
         data = {

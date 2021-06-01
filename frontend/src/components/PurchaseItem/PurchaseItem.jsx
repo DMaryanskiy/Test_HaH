@@ -19,7 +19,7 @@ function PurchaseItem ({product}) {
           <h3 className="basket-page__product-title">{product.product.title}</h3>
           <p className="basket-page__product-description">{product.product.description}</p>
         </div>
-        <input onChange={changeInput} min="1" value="1" type="number" className="basket-page__amount"></input>
+        <input onChange={changeInput} min="1" type="number" className="basket-page__amount"></input>
         <p className="basket-page__product-price">{product.product.price} &#8381;</p>
         <button className="basket-page__product-button"></button>
     </li>
