@@ -20,7 +20,7 @@ class Api {
 
     deleteProduct(user, product) {
         const username = user.username;
-        return fetch(`${this._baseUrl}/purchase/${product.id}`, {
+        return fetch(`${this._baseUrl}/purchase/${product.product.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

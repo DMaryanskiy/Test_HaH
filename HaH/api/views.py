@@ -111,6 +111,7 @@ def purchase_api_detail(request, product_id):
     if request.method == "DELETE":
         get_object_or_404(
             Purchase,
+            user=user,
             product=product
         ).delete()
         return Response({"success": True}, status=status.HTTP_204_NO_CONTENT)

@@ -16,7 +16,7 @@ function PurchaseItem ({product, user}) {
   const deleteCard = () => {
     console.log(user);
     console.log(product.product.id)
-    api.deleteProduct(user, product.product.id)
+    api.deleteProduct(user, product)
       .then(()=> {
         console.log('delete 2')
       })
