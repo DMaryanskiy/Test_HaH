@@ -16,7 +16,6 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import * as auth from '../../utils/auth';
 import './App.css';
 import { api } from '../../utils/Api';
-//import { api } from '../../utils/Api';
 
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
     const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({username:''});
-    //const [purchase, setPurchase] = React.useState([]);
 
     React.useEffect(() => {
         if (loggedIn) {
@@ -45,18 +43,6 @@ function App() {
           })
         }
     }, [loggedIn]);
-
-    /*
-    React.useEffect(() => {
-        if (loggedIn) {
-          api.getPurchase(currentUser.username)
-          .then(data => {
-            setPurchase(data);
-          })
-        }
-    }, []); */
-
-
 
     React.useEffect(() => {
         tokenCheck()
@@ -166,7 +152,7 @@ function App() {
             <Route exact path="/">
               <div className="product-main">
                 <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
-                <Product  
+                <Product  loggedIn={loggedIn}
                   onCardClick={handleCardClick}
                 />  
               </div>
