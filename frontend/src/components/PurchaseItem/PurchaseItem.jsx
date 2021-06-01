@@ -1,6 +1,7 @@
 import React from 'react';
+import { api } from '../../utils/Api';
 
-function PurchaseItem ({product}) {
+function PurchaseItem ({product, user}) {
 
   const changeInput = (e) => {
     e.preventDefault();
@@ -12,6 +13,18 @@ function PurchaseItem ({product}) {
     //productPrice = e.target.value*product.product.price;
   }
 
+  const deleteCard = () => {
+    console.log(user);
+    console.log(product.product.id)
+    api.deleteProduct(user, product.product.id)
+      .then(()=> {
+        console.log('delete 2')
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+  }
+
   return (
     <li className="basket-page__product">
         <img className="basket-page__picture" src={product.product.image}></img>
@@ -21,7 +34,7 @@ function PurchaseItem ({product}) {
         </div>
         <input onChange={changeInput} min="1" type="number" className="basket-page__amount"></input>
         <p className="basket-page__product-price">{product.product.price} &#8381;</p>
-        <button className="basket-page__product-button"></button>
+        <button onClick={deleteCard} className="basket-page__product-button"></button>
     </li>
   )
 }

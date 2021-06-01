@@ -34,7 +34,7 @@ function BasketPage({onClick, loggedIn}) {
             <div className="basket-page__content">
                 <ul className="basket-page__products">
                     {purchase.map(product => ( 
-                        <PurchaseItem product={product} key={product.id}></PurchaseItem>
+                        <PurchaseItem product={product} key={product.id} user={currentUser}></PurchaseItem>
                     ))}
                 </ul>
                 <div className="basket-page__order">

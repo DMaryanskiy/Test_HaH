@@ -18,6 +18,20 @@ class Api {
         }).then(this._checkResponse);
     }
 
+    deleteProduct(user, product) {
+        const username = user.username;
+        return fetch(`${this._baseUrl}/purchase/${product.id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username,
+                product,
+            }),
+        }).then(this._checkResponse);
+    }
+
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "POST",
