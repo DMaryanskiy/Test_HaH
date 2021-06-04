@@ -1,6 +1,3 @@
-from enum import unique
-from django.contrib.auth import authenticate
-
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
@@ -49,7 +46,9 @@ class FavouriteSerializer(serializers.ModelSerializer):
 
 class PurchaseSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
-    product = ProductsSerializer(read_only=True)
+    product = ProductsSerializer(
+        read_only=True,
+    )
 
     class Meta:
         model = Purchase

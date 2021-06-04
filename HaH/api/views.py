@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404
 
 from rest_framework import status
+from rest_framework import validators
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -97,13 +98,16 @@ def purchase_api_detail(request, product_id):
     user = get_object_or_404(User, username=request.data["username"])
     product = get_object_or_404(Products, pk=product_id)
     if request.method == "POST":
+        if Purchase.objects.filter(user=user, product=product).exists():
+            return Response({"success": False}, status=status.HTTP_400_BAD_REQUEST)
         serializer = PurchaseSerializer(data={
-            "user": user,
-            "product": product
-        }, context= {
+                "user": user,
+                "product": product
+            },
+            context= {
                 "request_user": user,
                 "request_product": product,
-            }
+            },
         )
         serializer.is_valid(raise_exception=True)
         serializer.save(user=user, product=product)
