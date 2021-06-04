@@ -18,7 +18,7 @@ function BasketPage({onClick, loggedIn}) {
           setPurchase(data);
         })
       }
-  }, []);
+  }, [currentUser]);
 
   const calculateOrderPrice = () => {
     purchase.forEach(element => {

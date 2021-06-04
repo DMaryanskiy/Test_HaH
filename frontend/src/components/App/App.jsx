@@ -29,11 +29,38 @@ function App() {
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({username:''});
 
+
+    /*
+    const handleButtonClick = (product) => {
+      console.log(product);
+      if (isProductAdded) {
+        setIsProductAdded(false);
+        return console.log('удаление')
+        /*
+        api.deleteProduct(currentUser, product)
+          .then(() => {
+            console.log('delete');
+          })
+          .catch(err => console.log(err)); 
+      } else {
+        setIsProductAdded(true);
+         return console.log('добавление')
+        
+        api.buyProduct(currentUser, product)
+          .then(() => {
+            console.log('add');
+          })
+          .catch(err => console.log(err));
+        } 
+    } */
+
+
+    /*
     React.useEffect(() => {
         if (loggedIn) {
             history.push("/");
         }
-    }, [loggedIn]);
+    }, [loggedIn]); */
 
     React.useEffect(() => {
         if (loggedIn) {
@@ -64,6 +91,7 @@ function App() {
 
     const handleLogout = () => {
       setLoggedIn(false);
+      console.log('hi');
       auth.logout()
         .then(() => {
           console.log('logout');
@@ -152,7 +180,7 @@ function App() {
             <Route exact path="/">
               <div className="product-main">
                 <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
-                <Product  loggedIn={loggedIn}
+                <Product loggedIn={loggedIn}
                   onCardClick={handleCardClick}
                 />  
               </div>
@@ -186,7 +214,7 @@ function App() {
                   <Product  onCardClick={handleCardClick}/>  
               </div>
             </Route>
-            <Footer />
+            <Footer loggedIn ={loggedIn} handleLogout={handleLogout}/>
 
             <Popup isOpen={isPopupOpen} onClose={closePopup}></Popup>
             <InfoTooltip auth={isSuccessAuth} isOpen={isInfoPopupOpen} onClose={closePopup}></InfoTooltip>

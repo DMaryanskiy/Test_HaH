@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css'
 
-function Footer() {
+function Footer({loggedIn, handleLogout}) {
     return (
       
       <footer class="footer">
@@ -18,7 +18,10 @@ function Footer() {
               <Link class="footer__link" to="/aboutUs">О нас</Link>
             </li>
             <li class="footer__links_element">
-              <Link class="footer__link" to="/login">Войти</Link>
+              { loggedIn
+                ? <Link onClick={handleLogout} class="footer__link" to="/login">Выйти</Link>
+                : <Link class="footer__link" to="/login">Войти</Link>
+              }
             </li>
           </ul>
       </footer>    
