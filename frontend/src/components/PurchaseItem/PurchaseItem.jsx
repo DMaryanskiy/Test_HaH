@@ -1,7 +1,7 @@
 import React from 'react';
 import { api } from '../../utils/Api';
 
-function PurchaseItem ({product, user}) {
+function PurchaseItem ({product, user, handleDeleteCard}) {
 
   const changeInput = (e) => {
     e.preventDefault();
@@ -14,13 +14,15 @@ function PurchaseItem ({product, user}) {
   }
 
   const deleteCard = () => {
+    handleDeleteCard(product.product)
+    /*
     api.deleteProduct(user, product.product)
       .then((res)=> {
         console.log(res);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      })
+      }) */
   }
 
   return (

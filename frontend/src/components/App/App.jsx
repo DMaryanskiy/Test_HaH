@@ -32,6 +32,7 @@ function App() {
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({username:''});
 
+    console.log(currentUser);
 
     /*
     const handleButtonClick = (product) => {
@@ -183,6 +184,17 @@ function App() {
       setIsOrderPopupOpen(true);
     }
 
+    const handleDeleteCard = (product) => {
+      console.log(product);
+      api.deleteProduct(currentUser, product)
+      .then((res)=> {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+    }
+
     return (
       <div className="page">
         <CurrentUserContext.Provider value={currentUser}>
@@ -218,7 +230,7 @@ function App() {
               <ProductPage/>
             </Route>
             <Route path="/basket-page">
-              <BasketPage onClick={handleMakeOrderClick} loggedIn={loggedIn}/>
+              <BasketPage onClick={handleMakeOrderClick} loggedIn={loggedIn} handleDeleteCard={handleDeleteCard}/>
             </Route>
             <Route path="/favorites">
               <div className="product-favorites">
