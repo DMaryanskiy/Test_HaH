@@ -16,6 +16,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import * as auth from '../../utils/auth';
 import './App.css';
 import { api } from '../../utils/Api';
+import PopupOrder from '../PopupOrder/PopupOrder';
 
 
 function App() {
@@ -25,7 +26,9 @@ function App() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
     const [isInfoPopupOpen, setIsInfoPopupOpen] = React.useState(false);
+    const [isOrderPopupOpen, setIsOrderPopupOpen] = React.useState(false); 
     const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
+    const [isSuccessOrder, setIsSuccessOrder] = React.useState(false);
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({username:''});
 
@@ -169,6 +172,15 @@ function App() {
     function closePopup() {
       setIsPopupOpen(false);
       setIsInfoPopupOpen(false);
+      setIsOrderPopupOpen(false);
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      closePopup();
+      //TODO: если заказ офомрлен, то setIsSuccessOrder(true) иначе setIsSuccessOrder(false);
+      //setIsSuccessOrder(true);
+      setIsOrderPopupOpen(true);
     }
 
     return (
@@ -216,8 +228,9 @@ function App() {
             </Route>
             <Footer loggedIn ={loggedIn} handleLogout={handleLogout}/>
 
-            <Popup isOpen={isPopupOpen} onClose={closePopup}></Popup>
+            <Popup isOpen={isPopupOpen} onClose={closePopup} onSubmit={handleSubmit}></Popup>
             <InfoTooltip auth={isSuccessAuth} isOpen={isInfoPopupOpen} onClose={closePopup}></InfoTooltip>
+            <PopupOrder isOrder={isSuccessOrder} isOpen={isOrderPopupOpen} onClose={closePopup}></PopupOrder>
             {/*<div>Автор иконок: <a href="https://www.flaticon.com/ru/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/ru/" title="Flaticon">www.flaticon.com</a></div>
             */}
         </CurrentUserContext.Provider>

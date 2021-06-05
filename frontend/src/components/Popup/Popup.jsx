@@ -3,7 +3,7 @@ import EscapeOutside from "react-escape-outside"
 import './Popup.css';
 
 
-function Popup({onClose, isOpen}) {
+function Popup({onClose, isOpen, onSubmit}) {
 
     return (
       //Закрытие по escape
@@ -24,7 +24,7 @@ function Popup({onClose, isOpen}) {
             >
                 <button type="button" className="popup__close-button" onClick={ onClose }></button>
                     <h2 className="popup__title">Оформление заказа</h2>
-                    <form className="popup__form">
+                    <form  onSubmit={onSubmit} className="popup__form">
                       <div className="popup__input-wrapper">
                         <p className="popup__input-title">Фамилия и имя</p>
                         <input type="text" className="popup__input" name="name"></input>
@@ -60,8 +60,8 @@ function Popup({onClose, isOpen}) {
                             <option value="Картой">Картой</option>
                         </select>
                       </div>
+                      <button className="popup__button" type="submit" >Заказать</button>
                     </form>
-                    <button className="popup__button" type="submit" >Заказать</button>
             </div>
         </div>
       </EscapeOutside>
