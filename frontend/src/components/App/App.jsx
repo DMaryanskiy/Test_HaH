@@ -16,6 +16,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import * as auth from '../../utils/auth';
 import './App.css';
 import { api } from '../../utils/Api';
+import PopupOrder from '../PopupOrder/PopupOrder';
 
 
 function App() {
@@ -25,15 +26,45 @@ function App() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
     const [isInfoPopupOpen, setIsInfoPopupOpen] = React.useState(false);
+    const [isOrderPopupOpen, setIsOrderPopupOpen] = React.useState(false); 
     const [isSuccessAuth, setIsSuccessAuth] = React.useState(false);
+    const [isSuccessOrder, setIsSuccessOrder] = React.useState(false);
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({username:''});
 
+    console.log(currentUser);
+
+    /*
+    const handleButtonClick = (product) => {
+      console.log(product);
+      if (isProductAdded) {
+        setIsProductAdded(false);
+        return console.log('удаление')
+        /*
+        api.deleteProduct(currentUser, product)
+          .then(() => {
+            console.log('delete');
+          })
+          .catch(err => console.log(err)); 
+      } else {
+        setIsProductAdded(true);
+         return console.log('добавление')
+        
+        api.buyProduct(currentUser, product)
+          .then(() => {
+            console.log('add');
+          })
+          .catch(err => console.log(err));
+        } 
+    } */
+
+
+    /*
     React.useEffect(() => {
         if (loggedIn) {
             history.push("/");
         }
-    }, [loggedIn]);
+    }, [loggedIn]); */
 
     React.useEffect(() => {
         if (loggedIn) {
@@ -64,6 +95,7 @@ function App() {
 
     const handleLogout = () => {
       setLoggedIn(false);
+      console.log('hi');
       auth.logout()
         .then(() => {
           console.log('logout');
@@ -141,6 +173,26 @@ function App() {
     function closePopup() {
       setIsPopupOpen(false);
       setIsInfoPopupOpen(false);
+      setIsOrderPopupOpen(false);
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      closePopup();
+      //TODO: если заказ офомрлен, то setIsSuccessOrder(true) иначе setIsSuccessOrder(false);
+      //setIsSuccessOrder(true);
+      setIsOrderPopupOpen(true);
+    }
+
+    const handleDeleteCard = (product) => {
+      console.log(product);
+      api.deleteProduct(currentUser, product)
+      .then((res)=> {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
     }
 
     return (
@@ -152,7 +204,7 @@ function App() {
             <Route exact path="/">
               <div className="product-main">
                 <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
-                <Product  loggedIn={loggedIn}
+                <Product loggedIn={loggedIn}
                   onCardClick={handleCardClick}
                 />  
               </div>
@@ -178,7 +230,7 @@ function App() {
               <ProductPage/>
             </Route>
             <Route path="/basket-page">
-              <BasketPage onClick={handleMakeOrderClick} loggedIn={loggedIn}/>
+              <BasketPage onClick={handleMakeOrderClick} loggedIn={loggedIn} handleDeleteCard={handleDeleteCard}/>
             </Route>
             <Route path="/favorites">
               <div className="product-favorites">
@@ -186,10 +238,11 @@ function App() {
                   <Product  onCardClick={handleCardClick}/>  
               </div>
             </Route>
-            <Footer />
+            <Footer loggedIn ={loggedIn} handleLogout={handleLogout}/>
 
-            <Popup isOpen={isPopupOpen} onClose={closePopup}></Popup>
+            <Popup isOpen={isPopupOpen} onClose={closePopup} onSubmit={handleSubmit}></Popup>
             <InfoTooltip auth={isSuccessAuth} isOpen={isInfoPopupOpen} onClose={closePopup}></InfoTooltip>
+            <PopupOrder isOrder={isSuccessOrder} isOpen={isOrderPopupOpen} onClose={closePopup}></PopupOrder>
             {/*<div>Автор иконок: <a href="https://www.flaticon.com/ru/authors/photo3idea-studio" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/ru/" title="Flaticon">www.flaticon.com</a></div>
             */}
         </CurrentUserContext.Provider>

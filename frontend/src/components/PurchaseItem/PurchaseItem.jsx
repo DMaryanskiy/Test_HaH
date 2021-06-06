@@ -1,7 +1,7 @@
 import React from 'react';
 import { api } from '../../utils/Api';
 
-function PurchaseItem ({product, user}) {
+function PurchaseItem ({product, user, handleDeleteCard}) {
 
   const changeInput = (e) => {
     e.preventDefault();
@@ -14,15 +14,15 @@ function PurchaseItem ({product, user}) {
   }
 
   const deleteCard = () => {
-    console.log(user);
-    console.log(product.product.id)
-    api.deleteProduct(user, product)
-      .then(()=> {
-        console.log('delete 2')
+    handleDeleteCard(product.product)
+    /*
+    api.deleteProduct(user, product.product)
+      .then((res)=> {
+        console.log(res);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      })
+      }) */
   }
 
   return (
@@ -32,7 +32,7 @@ function PurchaseItem ({product, user}) {
           <h3 className="basket-page__product-title">{product.product.title}</h3>
           <p className="basket-page__product-description">{product.product.description}</p>
         </div>
-        <input onChange={changeInput} min="1" type="number" className="basket-page__amount"></input>
+        <input onChange={changeInput} min="1" value="1" type="number" className="basket-page__amount"></input>
         <p className="basket-page__product-price">{product.product.price} &#8381;</p>
         <button onClick={deleteCard} className="basket-page__product-button"></button>
     </li>

@@ -20,7 +20,7 @@ class Api {
 
     deleteProduct(user, product) {
         const username = user.username;
-        return fetch(`${this._baseUrl}/purchase/${product.product.id}`, {
+        return fetch(`${this._baseUrl}/purchase/${product.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +29,12 @@ class Api {
                 username,
                 product,
             }),
-        }).then(this._checkResponse);
+        }).then((res) => {
+            if (res.ok) {
+                return res;
+            }
+            return Promise.reject(`Ошибка ${res.status}`);
+        });
     }
 
     getUserInfo() {

@@ -4,7 +4,7 @@ import './BasketPage.css';
 import PurchaseItem from '../PurchaseItem/PurchaseItem';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function BasketPage({onClick, loggedIn}) {
+function BasketPage({onClick, loggedIn, handleDeleteCard}) {
 
   const currentUser = React.useContext(CurrentUserContext);
   const [purchase, setPurchase] = React.useState([]);
@@ -18,7 +18,7 @@ function BasketPage({onClick, loggedIn}) {
           setPurchase(data);
         })
       }
-  }, []);
+  }, [currentUser]);
 
   const calculateOrderPrice = () => {
     purchase.forEach(element => {
@@ -34,7 +34,7 @@ function BasketPage({onClick, loggedIn}) {
             <div className="basket-page__content">
                 <ul className="basket-page__products">
                     {purchase.map(product => ( 
-                        <PurchaseItem product={product} key={product.id} user={currentUser}></PurchaseItem>
+                        <PurchaseItem product={product} key={product.id} user={currentUser} handleDeleteCard={handleDeleteCard}></PurchaseItem>
                     ))}
                 </ul>
                 <div className="basket-page__order">

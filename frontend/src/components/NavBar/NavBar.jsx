@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './NavBar.css'
 
 function NavBar({loggedIn, handleLogout}) {
-    console.log(loggedIn);
     return (
         <nav className="menu">
             <NavLink exact to="/" activeClassName="menu__link_active" className="menu__link">Список товаров</NavLink>
