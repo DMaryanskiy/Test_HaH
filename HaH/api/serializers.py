@@ -1,7 +1,8 @@
+from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-from .models import Products, Favourite, Purchase, User
+from .models import Products, Favourite, Purchase, User, Order
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -38,7 +39,9 @@ class ProductsSerializer(serializers.ModelSerializer):
 
 class FavouriteSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
-    product = ProductsSerializer(read_only=True)
+    product = ProductsSerializer(
+        read_only=True
+    )
 
     class Meta:
         model = Favourite
@@ -52,4 +55,14 @@ class PurchaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Purchase
+        fields = "__all__"
+
+class OrderSerializer(serializers.ModelSerializer):
+    products = PurchaseSerializer(
+        read_only=True,
+        many=True
+    )
+
+    class Meta:
+        model = Order
         fields = "__all__"

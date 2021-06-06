@@ -209,14 +209,16 @@ function App() {
                 />  
               </div>
             </Route>
-            <Route exact path="/?category=Овощи">
+            {
+            /* <Route exact path="/?category=Овощи">
               <div className="product-main">
                 <ProductMenu onMenuClick={handleMenuClick} isMenuOpen={isMenuOpen}/>
                 <Product  
                   onCardClick={handleCardClick}
                 />  
               </div>
-            </Route>  
+            </Route> */
+            } 
             <Route path="/aboutUs">
               <AboutUs />
             </Route>

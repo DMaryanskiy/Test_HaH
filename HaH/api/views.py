@@ -1,9 +1,10 @@
+import re
 import django_filters
 from django_filters.rest_framework import FilterSet, DjangoFilterBackend
 
 from django.shortcuts import get_object_or_404
 
-from rest_framework import status
+from rest_framework import serializers, status
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -13,12 +14,14 @@ from .serializers import (
         ProductsSerializer,
         FavouriteSerializer,
         PurchaseSerializer,
+        OrderSerializer,
         UserSerializer,
     )
 from .models import (
         Products,
         Favourite,
         Purchase,
+        Order,
         User,
     )
 
@@ -58,6 +61,10 @@ class UserByTokenView(APIView):
         }
         return Response(data, status=status.HTTP_201_CREATED)
 
+class OrderListView(ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
 @api_view(["GET"])
 def purchase_api_list(request, username):
     user = get_object_or_404(User, username=username)
@@ -73,7 +80,9 @@ def purchase_api_list(request, username):
 def favourite_api_detail(request, product_id):
     product = get_object_or_404(Products, pk=product_id)
     if request.method == "POST":
-        serializer = FavouriteSerializer(data=request.data, context= {
+        serializer = FavouriteSerializer(
+            data=request.data,
+            context= {
                 "request_user": request.user,
                 "request_product": product,
             }
@@ -98,7 +107,8 @@ def purchase_api_detail(request, product_id):
         if Purchase.objects.filter(user=user, product=product).exists():
             return Response({"success": False}, status=status.HTTP_400_BAD_REQUEST)
         
-        serializer = PurchaseSerializer(data={
+        serializer = PurchaseSerializer(
+            data={
                 "user": user,
                 "product": product
             },
@@ -118,3 +128,17 @@ def purchase_api_detail(request, product_id):
             product=product
         ).delete()
         return Response({"success": True}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(["POST"])
+def order_api_detail(request, username):
+    user = get_object_or_404(User, username=username)
+    products = Purchase.objects.filter(user=user)
+    serializer = OrderSerializer(
+        data=request.data,
+        context={
+            "products": products
+        }
+    )
+    serializer.is_valid(raise_exception=True)
+    serializer.save(products=products)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)

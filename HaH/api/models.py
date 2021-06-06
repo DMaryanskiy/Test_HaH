@@ -35,3 +35,15 @@ class Purchase(models.Model):
 
     def __str__(self):
         return self.product.title
+
+class Order(models.Model):
+    name = models.CharField(max_length=81)
+    phone = models.CharField(max_length=12)
+    city = models.CharField(max_length=81)
+    street = models.CharField(max_length=81)
+    house = models.CharField(max_length=81)
+    flat = models.CharField(max_length=81)
+    date = models.DateTimeField()
+    commentary = models.TextField(null=True, blank=True)
+    pay = models.CharField(max_length=81)
+    products = models.ManyToManyField(Purchase, related_name="products_orders")
