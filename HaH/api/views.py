@@ -133,6 +133,8 @@ def purchase_api_detail(request, product_id):
 def order_api_detail(request, username):
     user = get_object_or_404(User, username=username)
     products = Purchase.objects.filter(user=user)
+    if request.data["data"]["pay"] == "":
+        request.data["data"]["pay"] = "Наличными"
     serializer = OrderSerializer(
         data=request.data["data"],
         context={

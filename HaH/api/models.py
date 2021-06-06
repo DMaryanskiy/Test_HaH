@@ -45,5 +45,5 @@ class Order(models.Model):
     flat = models.CharField(max_length=81)
     date = models.DateTimeField()
     commentary = models.TextField(null=True, blank=True)
-    pay = models.CharField(max_length=81)
+    pay = models.CharField(max_length=81, default="Наличными")
     products = models.ManyToManyField(Purchase, related_name="products_orders")
