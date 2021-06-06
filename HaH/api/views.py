@@ -1,15 +1,12 @@
 import django_filters
 from django_filters.rest_framework import FilterSet, DjangoFilterBackend
 
-from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404
 
 from rest_framework import status
-from rest_framework import validators
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
-from rest_framework.validators import UniqueValidator
 from rest_framework.views import APIView
 
 from .serializers import (
@@ -30,7 +27,7 @@ class UserCreate(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
+            serializer.save()
             return Response({
                 "user" : serializer.data,
             }, status=status.HTTP_201_CREATED)
@@ -100,6 +97,7 @@ def purchase_api_detail(request, product_id):
     if request.method == "POST":
         if Purchase.objects.filter(user=user, product=product).exists():
             return Response({"success": False}, status=status.HTTP_400_BAD_REQUEST)
+        
         serializer = PurchaseSerializer(data={
                 "user": user,
                 "product": product
