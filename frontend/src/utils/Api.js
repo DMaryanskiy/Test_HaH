@@ -4,6 +4,19 @@ class Api {
         this._headers = options.headers;
     }
 
+    makeOrder(user, data) {
+        return fetch(`${this._baseUrl}/purchases/${user}/orders/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user,
+                data,
+            }),
+        }).then(this._checkResponse);
+    }
+
     buyProduct(user, product) {
         const username = user.username;
         return fetch(`${this._baseUrl}/purchase/${product.id}`, {

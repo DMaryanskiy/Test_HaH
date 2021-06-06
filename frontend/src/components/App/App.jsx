@@ -32,8 +32,6 @@ function App() {
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({username:''});
 
-    console.log(currentUser);
-
     /*
     const handleButtonClick = (product) => {
       console.log(product);
@@ -95,7 +93,6 @@ function App() {
 
     const handleLogout = () => {
       setLoggedIn(false);
-      console.log('hi');
       auth.logout()
         .then(() => {
           console.log('logout');
@@ -176,16 +173,19 @@ function App() {
       setIsOrderPopupOpen(false);
     }
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
+    const handleSubmit = (data) => {
       closePopup();
-      //TODO: если заказ офомрлен, то setIsSuccessOrder(true) иначе setIsSuccessOrder(false);
-      //setIsSuccessOrder(true);
+      api.makeOrder(currentUser.username, data)
+        .then(() => {
+          setIsSuccessOrder(true)
+        })
+        .catch(() => {
+          setIsSuccessOrder(false)
+        });
       setIsOrderPopupOpen(true);
     }
 
     const handleDeleteCard = (product) => {
-      console.log(product);
       api.deleteProduct(currentUser, product)
       .then((res)=> {
         console.log(res);

@@ -131,10 +131,11 @@ def purchase_api_detail(request, product_id):
 
 @api_view(["POST"])
 def order_api_detail(request, username):
+    print(request.data)
     user = get_object_or_404(User, username=username)
     products = Purchase.objects.filter(user=user)
     serializer = OrderSerializer(
-        data=request.data,
+        data=request.data["data"],
         context={
             "products": products
         }
