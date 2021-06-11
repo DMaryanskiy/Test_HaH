@@ -4,7 +4,7 @@ from django_filters.rest_framework import FilterSet, DjangoFilterBackend
 
 from django.shortcuts import get_object_or_404
 
-from rest_framework import serializers, status
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -49,10 +49,6 @@ class ProductsListView(ListAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_class = CategoryFilter
 
-class FavouriteListView(ListAPIView):
-    queryset = Favourite.objects.all()
-    serializer_class = FavouriteSerializer
-
 class UserByTokenView(APIView):
     def post(self, request):
         data = {
@@ -64,6 +60,17 @@ class UserByTokenView(APIView):
 class OrderListView(ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+@api_view(["GET"])
+def favourite_api_list(request, username):
+    user = get_object_or_404(User, username=username)
+    purchase_list = Favourite.objects.filter(user=user)
+    serializer = FavouriteSerializer(
+        purchase_list,
+        many=True,
+        context={"request": request}
+    )
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
 def purchase_api_list(request, username):
